@@ -1,0 +1,242 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #0d0d0d;
+    color: #00ff00;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+canvas#bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+#ui-toggle-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(13, 13, 13, 0.7);
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    padding: 5px 10px;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    z-index: 101; /* Above ui-container */
+    font-size: 24px;
+    border-radius: 5px;
+}
+
+#ui-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(13, 13, 13, 0.7);
+    padding: 10px;
+    border: 1px solid #00ff00;
+    display: none; /* Hidden by default, toggled by host */
+    z-index: 100;
+}
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+#status, #role {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#host-view {
+    display: flex;
+    flex-direction: column;
+}
+
+#host-controls {
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+#host-controls button {
+    background-color: transparent;
+    border: 1px solid #00ff00;
+    color: #00ff00;
+    padding: 5px 10px;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+#host-controls button:hover {
+    background-color: #00ff00;
+    color: #0d0d0d;
+}
+
+#host-controls button:disabled {
+    border-color: #555;
+    color: #555;
+    cursor: not-allowed;
+    background-color: transparent;
+}
+
+#data-display {
+    background-color: #1a1a1a;
+    border: 1px solid #00ff00;
+    padding: 15px;
+    margin-top: 20px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 14px;
+    min-height: 200px;
+    max-height: 300px; /* Make it compact */
+    overflow-y: scroll; /* Add scrollbar */
+    box-shadow: inset 0 0 10px #00ff00;
+    resize: vertical;
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#joystick-container {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    height: 150px;
+    display: none; /* Hidden by default, shown for mobile */
+    z-index: 20;
+}
+
+#chat-ui-container {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column; /* Changed from column-reverse */
+    z-index: 100;
+}
+
+#chat-bar {
+    display: flex;
+    align-items: center;
+    background-color: rgba(13, 13, 13, 0.7);
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#chat-toggle-btn {
+    background-color: transparent;
+    border: none;
+    color: #00ff00;
+    padding: 0 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+#chat-container {
+    width: 350px;
+    height: 200px;
+    background-color: rgba(26, 26, 26, 0.75); /* Made background more transparent */
+    border: 1px solid #00ff00;
+    border-bottom: none;
+    box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.5); /* Softened box-shadow */
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    margin-bottom: 5px; /* Space between messages and input bar */
+    border-radius: 5px 5px 0 0;
+}
+
+#chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column-reverse; /* New messages appear at the bottom and push old ones up */
+}
+
+#chat-messages .message {
+    margin-bottom: 5px;
+    word-wrap: break-word;
+}
+
+#chat-messages .message .username {
+    font-weight: bold;
+    color: #1E90FF; /* Dodger blue for usernames */
+}
+
+#chat-messages .message .checkmark {
+    color: #00ff00; /* Green for validated checkmark */
+    font-weight: bold;
+}
+
+#chat-form {
+    display: flex;
+    flex-grow: 1;
+}
+
+#chat-input {
+    flex-grow: 1;
+    background-color: transparent;
+    border: none;
+    color: #00ff00;
+    padding: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+}
+
+#chat-input:focus {
+    outline: none;
+    background-color: #2a2a2a;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    #ui-container {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: auto;
+        font-size: 14px;
+        overflow-y: auto; /* Allow scrolling on small screens */
+    }
+
+    h1 {
+        font-size: 1.5em;
+        margin-top: 50px; /* Space for the toggle button */
+    }
+
+    #chat-ui-container {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    #chat-bar {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    #chat-container {
+        width: 100%;
+        height: 150px;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        border-radius: 0;
+        margin-bottom: 0;
+    }
+
+    #joystick-container {
+        display: none !important; /* Managed by JS, hide this static container */
+    }
+}

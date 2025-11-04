@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retroverse 3D</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="bg"></canvas>
+
+    <div id="ui-toggle-btn">⚙️</div>
+    <div id="joystick-container"></div>
+
+    <div id="ui-container" style="display: none;">
+        <h1>Retroverse</h1>
+        <div id="status">Connecting...</div>
+        <div id="role"></div>
+        
+        <div id="host-view" style="display: none;">
+            <h2>Host Control Panel</h2>
+            <div id="host-controls">
+                <button id="freeze-btn">Freeze & Edit</button>
+                <button id="save-btn" disabled>Save Changes</button>
+            </div>
+            <textarea id="data-display" readonly>Loading game state...</textarea>
+        </div>
+    
+        <div id="player-view" style="display: none;">
+            <p>Connected to the game. Waiting for the host to start.</p>
+        </div>
+    </div>
+
+    <div id="chat-ui-container">
+        <div id="chat-container">
+            <div id="chat-messages"></div>
+        </div>
+        <div id="chat-bar">
+            <div id="chat-toggle-btn">💬</div>
+            <form id="chat-form">
+                <input type="text" id="chat-input" placeholder="Say something..." autocomplete="off">
+            </form>
+        </div>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://esm.sh/three",
+            "three/addons/": "https://esm.sh/three/examples/jsm/",
+            "nipplejs": "https://esm.sh/nipplejs"
+        }
+    }
+    </script>
+    <script type="module" src="app.js"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
